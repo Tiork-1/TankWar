@@ -188,6 +188,10 @@ class Setting():
                     self.cursor1.state += 1
                     constants.sound_level[0] = constants.sound_level[self.cursor1.state]
                     constants.sound_state += 1
+                    self.cursor1.rect.x += 150
+            if self.cursor.state == 2:
+                if self.cursor2.state < 3:
+                    self.cursor2.state += 1
                     constants.level_state += 1
                     constants.SPEED_LOW = constants.speed_low_array[constants.level_state]
                     constants.SPEED_MID = constants.speed_mid_array[constants.level_state]
@@ -195,10 +199,6 @@ class Setting():
                     constants.light_num = constants.light_num_array[constants.level_state]
                     constants.mid_num1 = constants.mid_num1_array[constants.level_state]
                     constants.mid_num2 = constants.mid_num2_array[constants.level_state]
-                    self.cursor1.rect.x += 150
-            if self.cursor.state == 2:
-                if self.cursor2.state < 3:
-                    self.cursor2.state += 1
                     self.cursor2.rect.x += 150
             T.stop(200)
         elif keys[pygame.K_RETURN]:
