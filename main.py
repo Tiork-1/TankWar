@@ -4,7 +4,6 @@ import constants as C
 import os
 import tools
 from components import mainMenu,setting,level01,game_over,success
-running = False
 def main():
     # 初始化
     pygame.init()
@@ -46,7 +45,7 @@ def main():
     now_state = state_dict['mainMenu']
 
     running = True
-    while running:
+    while running == True:
 
         # 设置游戏帧率
         clock.tick(C.FPS)

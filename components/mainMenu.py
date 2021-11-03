@@ -110,4 +110,4 @@ class MainMenu():
             if self.cursor.state == 3:
                 self.next = 'setting'
             if self.cursor.state == 4:
-                main.running = False
+                pygame.display.quit()

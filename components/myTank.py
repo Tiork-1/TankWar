@@ -135,10 +135,10 @@ class Player(pygame.sprite.Sprite):
                 self.move_down(self.index_now)
             elif keys[pygame.K_a] :
                 self.move_left(self.index_now)
-            elif keys[pygame.K_x]:
-                self.dead = True
+            # elif keys[pygame.K_x]:
+            #     self.dead = True
             # 按j发射子弹
-            elif keys[pygame.K_j]:
+            elif keys[pygame.K_SPACE]:
                 self.bullet_exist = True
                 self.shoot()
             # index_now ++
@@ -156,8 +156,8 @@ class Player(pygame.sprite.Sprite):
                 self.move_down(self.index_now)
             elif keys[pygame.K_LEFT]:
                 self.move_left(self.index_now)
-            elif keys[pygame.K_c]:
-                self.dead = True
+            # elif keys[pygame.K_c]:
+            #     self.dead = True
             self.index_now += 1
             if self.index_now > 10000:
                 self.index_now %= 2

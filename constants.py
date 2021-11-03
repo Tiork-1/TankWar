@@ -28,7 +28,7 @@ YOUR_SPEED = 2
 SCALE = 0.70
 WALL_SCALE = 0.75
 # 关卡信息
-MY_TANK_LIFE = 10
+MY_TANK_LIFE = 3
 ENEMY_TANK_LIFE = 20
 now_enemy_tank_life = 20
 now_my_tank_life = 20
@@ -56,3 +56,5 @@ speed_high_array = [0,2,3,5]
 light_num_array = [0,8,7,5]
 mid_num1_array = [0,6,5,4]
 mid_num2_array = [0,5,5,4]
+
+TANK_NAME = 'you'
