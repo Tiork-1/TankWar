@@ -89,14 +89,14 @@ class MainMenu():
             if self.cursor.state < 4:
                 self.cursor.state += 1
                 self.cursor.rect.y += 50
-                tools.stop(100)
+                tools.stop(200)
         elif keys[pygame.K_UP]:
             self.select_bgm.play()
             self.select_bgm.set_volume(constants.sound_level[0])
             if self.cursor.state > 1:
                 self.cursor.state -= 1
                 self.cursor.rect.y -= 50
-                tools.stop(100)
+                tools.stop(200)
         elif keys[pygame.K_RETURN]:
             self.select_bgm.play()
             self.select_bgm.set_volume(constants.sound_level[0])

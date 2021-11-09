@@ -7,7 +7,7 @@
 # 屏幕的高和宽
 SCREEN_WIDTH,SCREEN_HEIGHT = 1200,720
 # 帧率
-FPS = 60
+FPS = 55
 
 # define colors
 WHITE = (255, 255, 255)
@@ -57,4 +57,5 @@ light_num_array = [0,8,7,5]
 mid_num1_array = [0,6,5,4]
 mid_num2_array = [0,5,5,4]
 
-TANK_NAME = 'you'
+# 上一局游戏进行时长
+LAST_PLAY_TIME = 0

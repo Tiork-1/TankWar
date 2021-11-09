@@ -49,6 +49,12 @@ class Player(pygame.sprite.Sprite):
         self.bullet_exist = False
         self.bullet = None
 
+        # 设置悬浮在头顶的名字
+        font = pygame.font.SysFont('arial',14,True)
+        self.name_image = font.render('YOU',1,(0,255,0))
+        self.name_rect = self.name_image.get_rect()
+
+
     def shoot(self):
         if self.bullet != None and self.bullet.dead != True:
             return 0
@@ -101,7 +107,7 @@ class Player(pygame.sprite.Sprite):
         self.rect.x = self.old_x
         self.rect.y = self.old_y
 
-    def update(self,keys,sprite_bullet):
+    def update(self,keys,sprite_bullet,surface):
         # 设置自身子弹所属精灵组
         self.sprite_bullet = sprite_bullet
         # 判断坦克是否死亡
@@ -119,6 +125,9 @@ class Player(pygame.sprite.Sprite):
             return 0
         else:
             self.index_relive = -1
+
+        # 绘制头顶的名字
+        surface.blit(self.name_image,(self.rect.x+6,self.rect.y-20))
 
 
         # 旧坐标，用来撤回

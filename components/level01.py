@@ -10,7 +10,7 @@ import pygame.transform
 import constants
 import constants as C
 import tools
-from components import myTank,walls,enermyTank
+from components import myTank,walls,computerTank
 
 class Level01():
     def __init__(self):
@@ -51,6 +51,8 @@ class Level01():
         # 在这里面添加精灵
         self.create_sprites()
 
+        # 添加计时器，计算游戏开始时间
+        self.start_time = pygame.time.get_ticks()
 
     def create_sprites(self):
         # 我方坦克
@@ -60,23 +62,28 @@ class Level01():
         self.sprite_all_tank.add(self.tank1)
 
         # 敌方坦克
-        self.e_tank1 = enermyTank.EnemyTank(48,96,1,C.light_num,0)
+        self.e_tank1 = computerTank.ComputerTank(48, 96, 1, C.light_num, 0)
+        self.e_tank1.set_name('ENM1',(255,0,0))
         self.sprite_all_tank.add(self.e_tank1)
         self.sprite_enemy_tank.add(self.e_tank1)
-        self.e_tank2 = enermyTank.EnemyTank(384,96,2,C.mid_num1,0)
+        self.e_tank2 = computerTank.ComputerTank(384, 96, 2, C.mid_num1, 0)
+        self.e_tank2.set_name('ENM2', (255, 0, 0))
         self.sprite_all_tank.add(self.e_tank2)
         self.sprite_enemy_tank.add(self.e_tank2)
-        self.e_tank3 = enermyTank.EnemyTank(768,96,3,C.mid_num2,0)
+        self.e_tank3 = computerTank.ComputerTank(768, 96, 3, C.mid_num2, 0)
+        self.e_tank3.set_name('ENM3', (255, 0, 0))
         self.sprite_all_tank.add(self.e_tank3)
         self.sprite_enemy_tank.add(self.e_tank3)
-        self.e_tank4 = enermyTank.EnemyTank(1104,96,2,C.ENEMY_TANK_LIFE-C.mid_num1-C.mid_num2-C.light_num,0)
+        self.e_tank4 = computerTank.ComputerTank(1104, 96, 2, C.ENEMY_TANK_LIFE - C.mid_num1 - C.mid_num2 - C.light_num, 0)
+        self.e_tank4.set_name('ENM4', (255, 0, 0))
         self.sprite_all_tank.add(self.e_tank4)
         self.sprite_enemy_tank.add(self.e_tank4)
         # 如果是双人模式就创建一个友方坦克
         if C.ONE_OR_TWO == 2:
-            self.friend_tank = enermyTank.EnemyTank(480, 624, 2, 5, 1)
+            self.friend_tank = computerTank.ComputerTank(480, 624, 2, 5, 1)
             self.sprite_my_tank.add(self.friend_tank)
             self.sprite_all_tank.add(self.friend_tank)
+            self.friend_tank.set_name('FRD', (0,0,255))
 
 
         # 墙
@@ -107,6 +114,8 @@ class Level01():
                 self.next = 'gameOver'
             else:
                 self.finished = True
+                end_time = pygame.time.get_ticks()
+                C.LAST_PLAY_TIME = end_time-self.start_time
                 self.next = 'success'
 
 
@@ -140,7 +149,7 @@ class Level01():
     def update_tanks(self,surface,keys):
         # 坦克精灵绘制和更新
         self.sprite_all_tank.draw(surface)
-        self.sprite_all_tank.update(keys,self.sprite_bullet)
+        self.sprite_all_tank.update(keys,self.sprite_bullet,surface)
 
 
 

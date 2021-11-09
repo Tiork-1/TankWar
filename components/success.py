@@ -35,7 +35,7 @@ class Success():
         # 设置光标位置和状态
         self.cursor.state = 1
         self.cursor.rect.x = 535
-        self.cursor.rect.y = 505
+        self.cursor.rect.y = 555
         # 选项贴图
         font = pygame.font.SysFont('FixedSys.ttf',46,True)
         # 重新开始
@@ -56,20 +56,36 @@ class Success():
         self.next_image = pygame.transform.scale(self.next_image,(int(self.next_rect.width*1.25),
                                                           int(self.next_rect.height * 1.25)))
 
+        # 关卡数，游戏时间的贴图
+        last_play_time =constants.LAST_PLAY_TIME
+        level_now = constants.ENEMY_TANK_LIFE - 20
+        minute = int(last_play_time/60000)
+        second = int(last_play_time/1000)
+        total_time = 'Total time:'+str(minute)+" M "+str(second)+' s'
+        font2 = pygame.font.SysFont('FixedSys.ttf',46,True)
+        self.time_image = font2.render(total_time,1,(156,102,31))
+        self.level_imege= font2.render('Level: '+str(level_now),1,(156,102,31))
+
     def update(self,keys,surface):
         surface.fill(constants.BLACK)
         self.draw_background(surface)
         self.draw_options(surface)
         self.update_cursor(keys,surface)
+        self.draw_message(surface)
+
+    def draw_message(self,surface):
+        surface.blit(self.time_image,(600,450))
+        surface.blit(self.level_imege,(600,500))
 
     def draw_background(self,surface):
         # surface.blit(self.main_image,(145,100))
         surface.blit(self.main_image, (145,100))
 
     def draw_options(self,surface):
-        surface.blit(self.restart_image,(600,550))
-        surface.blit(self.return_image,(600,600))
-        surface.blit(self.next_image,(600,500))
+        surface.blit(self.next_image,(600,550))
+        surface.blit(self.restart_image,(600,600))
+        surface.blit(self.return_image,(600,650))
+
 
     def update_cursor(self,keys,surface):
         surface.blit(self.cursor.image,self.cursor.rect)

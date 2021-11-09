@@ -1,7 +1,7 @@
 # -*- coding = utf-8 -*-
 # @Time : 2021/10/21 14:46
 # @Author : qiuxinhan
-# @File : enermyTank.py
+# @File : computerTank.py
 # @Software : PyCharm
 import random
 
@@ -10,7 +10,7 @@ from components import bullet
 import tools as T
 import constants as C
 
-class EnemyTank(pygame.sprite.Sprite):
+class ComputerTank(pygame.sprite.Sprite):
     # 前两个参数是开始默认坐标，也是复活坐标
     def __init__(self,_x,_y,_type,_life,_camp):
         # 先初始化精灵类
@@ -77,6 +77,12 @@ class EnemyTank(pygame.sprite.Sprite):
             self.blood = 3
         if _camp==1:
             self.speed = C.YOUR_SPEED
+
+    def set_name(self,tankName,color):
+        # 设置悬浮在头顶的名字
+        font = pygame.font.SysFont('arial',14,True)
+        self.name_image = font.render(tankName,1,color)
+        self.name_rect = self.name_image.get_rect()
 
     def shoot(self):
         if self.bullet != None and self.bullet.dead != True:
@@ -167,7 +173,7 @@ class EnemyTank(pygame.sprite.Sprite):
         self.rect.x = self.old_x
         self.rect.y = self.old_y
 
-    def update(self,keys,sprite_bullet):
+    def update(self,keys,sprite_bullet,surface):
         # 设置自身子弹所属精灵组
         self.sprite_bullet = sprite_bullet
         # 判断坦克是否死亡
@@ -185,6 +191,9 @@ class EnemyTank(pygame.sprite.Sprite):
             return 0
         else:
             self.index_relive = -1
+
+        # 绘制名字
+        surface.blit(self.name_image,(self.rect.x+6,self.rect.y-20))
 
 
         # 旧坐标，用来撤回
