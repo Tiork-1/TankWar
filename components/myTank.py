@@ -147,7 +147,7 @@ class Player(pygame.sprite.Sprite):
             # elif keys[pygame.K_x]:
             #     self.dead = True
             # 按j发射子弹
-            elif keys[pygame.K_SPACE]:
+            if keys[pygame.K_SPACE]:
                 self.bullet_exist = True
                 self.shoot()
             # index_now ++
